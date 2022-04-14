@@ -30,8 +30,12 @@ export default function PermissionsAccordion({ permissionGroup }) {
     >
       <Stack justifyContent="space-between" direction="row">
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <KeyboardArrowDownIcon />
-          <Typography color={!user.status ? "lightgray" : "black"}>
+          <KeyboardArrowDownIcon
+            color={!user.status ? "disabled" : "standardText"}
+          />
+          <Typography
+            color={!user.status ? "disabled.main" : "standardText.main"}
+          >
             <b>{permissionGroup.name}</b>
           </Typography>
         </AccordionSummary>
@@ -54,7 +58,7 @@ export default function PermissionsAccordion({ permissionGroup }) {
               direction="row"
             >
               <Typography
-                color={!user.status ? "lightgray" : "black"}
+                color={!user.status ? "disabled.main" : "standardText.main"}
                 variant="h7"
               >
                 <CircleIcon

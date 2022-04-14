@@ -1,12 +1,13 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 
 import useTableColumns from "./useTableColumns";
 import { selectSearchText, selectUsers } from "../state/usersSlice";
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function UserTable() {
+  const [pageSize, setPageSize] = useState(5);
   const tableColumns = useTableColumns();
   const users = useSelector(selectUsers);
   const searchText = useSelector(selectSearchText);
@@ -26,15 +27,17 @@ export default function UserTable() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ height: 600 }}>
+    <Box sx={{ paddingLeft: 20, paddingRight: 10, paddingTop: 3, height: 650 }}>
       <DataGrid
         sx={{ border: "none" }}
+        rowHeight={100}
         rows={users.filter(handleFilter)}
         columns={tableColumns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 20]}
         disableSelectionOnClick
       />
-    </Container>
+    </Box>
   );
 }

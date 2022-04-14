@@ -124,6 +124,7 @@ export default function UserForm({ handleClose }) {
                 disabled={Object.keys(touched).length === 0 || !isValid}
                 onClick={() => handleSubmit()}
                 variant="contained"
+                size="large"
               >
                 Send Invite
               </Button>

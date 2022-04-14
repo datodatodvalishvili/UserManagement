@@ -118,10 +118,8 @@ export default function UserProfileForm() {
                 disabled={!isValid}
                 onClick={() => handleSubmit()}
                 sx={{
-                  textTransform: "none",
                   padding: 3,
                   marginTop: 7,
-                  borderRadius: 30,
                 }}
                 variant="contained"
                 size="large"

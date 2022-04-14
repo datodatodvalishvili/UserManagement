@@ -13,16 +13,22 @@ export default function UserPermissions() {
       <Stack>
         <Stack justifyContent="space-between" direction="row">
           <Typography variant="h3">Permissions</Typography>
-          <Typography color={!user.status ? "lightgray" : "black"} variant="h7">
+          <Typography
+            color={!user.status ? "disabled.main" : "standardText.main"}
+            variant="h7"
+          >
             {user.role}
           </Typography>
         </Stack>
         <Stack
-          sx={{ marginTop: 7 ,marginBottom:3 }}
+          sx={{ marginTop: 7, marginBottom: 3 }}
           justifyContent="space-between"
           direction="row"
         >
-          <Typography color={!user.status ? "lightgray" : "black"} variant="h7">
+          <Typography
+            color={!user.status ? "disabled.main" : "standardText.main"}
+            variant="h7"
+          >
             <b>Super admin</b>
           </Typography>
           <Switch

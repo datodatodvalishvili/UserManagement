@@ -36,13 +36,14 @@ const initialPermissionGroups = [
 const initialState = {
   searchText: "",
   maxID: 5,
+  deleteID: 0,
   users: [
     {
       id: 1,
       role: "Admin",
       firstName: "Jon",
-      lastName: "Dvali",
-      email: "dato@gmail.com",
+      lastName: "Doe",
+      email: "jon@gmail.com",
       status: true,
       permissionGroups: initialPermissionGroups,
       superAdmin: false,
@@ -50,9 +51,9 @@ const initialState = {
     {
       id: 2,
       role: "User",
-      firstName: "Cersei",
-      lastName: "Dvali",
-      email: "dato@gmail.com",
+      firstName: "Tom",
+      lastName: "Jones",
+      email: "tom@gmail.com",
       status: false,
       permissionGroups: initialPermissionGroups,
       superAdmin: false,
@@ -61,8 +62,8 @@ const initialState = {
       id: 3,
       role: "Admin",
       firstName: "Jaime",
-      lastName: "Dvali",
-      email: "dato@gmail.com",
+      lastName: "Jackson",
+      email: "jaime@gmail.com",
       status: true,
       permissionGroups: initialPermissionGroups,
       superAdmin: false,
@@ -70,9 +71,9 @@ const initialState = {
     {
       id: 4,
       role: "User",
-      firstName: "Arya",
-      lastName: "Dvali",
-      email: "dato@gmail.com",
+      firstName: "Nial",
+      lastName: "Cortes",
+      email: "nial@gmail.com",
       status: false,
       permissionGroups: initialPermissionGroups,
       superAdmin: false,
@@ -80,9 +81,9 @@ const initialState = {
     {
       id: 5,
       role: "Admin",
-      firstName: "Daenerys",
-      lastName: "Dvali",
-      email: "dato@gmail.com",
+      firstName: "Mikhail",
+      lastName: "Whelan",
+      email: "mikhail@gmail.com",
       status: false,
       permissionGroups: initialPermissionGroups,
       superAdmin: false,
@@ -105,6 +106,9 @@ const usersSlice = createSlice({
     },
     setSearchText(state, action) {
       state.searchText = action.payload;
+    },
+    setDeleteID(state, action) {
+      state.deleteID = action.payload;
     },
     deleteUser(state, action) {
       const index = state.users
@@ -137,6 +141,7 @@ export const selectUserById = (state, id) => {
   return state.users.users[id];
 };
 export const selectSearchText = (state) => state.users.searchText;
+export const selectDeleteID = (state) => state.users.deleteID;
 
 export const {
   addUser,
@@ -144,5 +149,6 @@ export const {
   deleteUser,
   toggleUserStatus,
   setSearchText,
+  setDeleteID,
 } = usersSlice.actions;
 export default usersSlice.reducer;

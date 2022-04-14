@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Paper, Typography } from "@mui/material";
+
 import SearchBar from "./SearchBar";
 
 export default function TopBar({ title, hasSearchBar = true }) {

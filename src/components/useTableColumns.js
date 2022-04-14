@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { Avatar, Grid, Switch, Typography } from "@mui/material";
+import { Box, Grid, Switch, Typography } from "@mui/material";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
@@ -8,32 +8,32 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import SettingsIcon from "@mui/icons-material/Settings";
 import KeyIcon from "@mui/icons-material/Key";
 
-import { deleteUser, toggleUserStatus } from "../state/usersSlice";
+import { setDeleteID, toggleUserStatus } from "../state/usersSlice";
 
 export default function useTableColumns() {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const delUser = useCallback(
     (id) => () => {
-      dispach(deleteUser(id));
+      dispatch(setDeleteID(id));
     },
-    []
+    [dispatch]
   );
 
   const handleToggle = useCallback(
     ({ id }) =>
       () => {
-        dispach(toggleUserStatus(id));
+        dispatch(toggleUserStatus(id));
       },
-    []
+    [dispatch]
   );
 
   const userSettings = useCallback(
     (id) => () => {
       navigate(`/user/${id}`);
     },
-    []
+    [navigate]
   );
 
   function getUserObject(params) {
@@ -51,9 +51,10 @@ export default function useTableColumns() {
       type: "actions",
       renderCell: (params) => (
         <strong>
-          <Avatar>
-            <AccountCircleRoundedIcon />
-          </Avatar>
+          <AccountCircleRoundedIcon
+            fontSize="large"
+            color={!params.row.status ? "disabled" : "standardText"}
+          />
         </strong>
       ),
     },
@@ -67,13 +68,13 @@ export default function useTableColumns() {
       renderCell: (params) => (
         <div>
           <Typography
-            color={!params.row.status ? "lightgray" : "black"}
+            color={!params.row.status ? "disabled.main" : "standardText.main"}
             variant="h6"
           >
-            {params.value.name}
+            <b>{params.value.name}</b>
           </Typography>
           <Typography
-            color={!params.row.status ? "lightgray" : "black"}
+            color={!params.row.status ? "disabled.main" : "standardText.main"}
             variant="h7"
           >
             {params.value.email}
@@ -87,20 +88,36 @@ export default function useTableColumns() {
       flex: 1,
       editable: false,
       renderCell: (params) => (
-        <Grid container>
-          <Grid item xs={2}>
+        <Grid spacing={2} container>
+          <Grid
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            item
+            xs={3}
+          >
             {params.value === "Admin" && (
-              <Avatar>
-                <KeyIcon />
-              </Avatar>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                  width: 50,
+                  height: 30,
+                  borderRadius: 20,
+                  backgroundColor: "secondary.main",
+                }}
+              >
+                <KeyIcon color="white" />
+              </Box>
             )}
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={9}>
             <Typography
-              color={!params.row.status ? "lightgray" : "black"}
-              variant="h6"
+              color={!params.row.status ? "disabled.main" : "standardText.main"}
+              variant="h7"
             >
-              {params.value}
+              <b>{params.value}</b>
             </Typography>
           </Grid>
         </Grid>
@@ -112,7 +129,11 @@ export default function useTableColumns() {
       flex: 1,
       editable: false,
       renderCell: (params) => (
-        <Switch checked={params.value} onChange={handleToggle(params)} />
+        <Switch
+          color="primary"
+          checked={params.value}
+          onChange={handleToggle(params)}
+        />
       ),
     },
     {

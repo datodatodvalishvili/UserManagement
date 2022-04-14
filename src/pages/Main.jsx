@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import UserTable from "../components/UserTable";
 import AddUserDialog from "../components/AddUserDialog";
 import TopBar from "../components/TopBar";
+import DeleteDialog from "../components/DeleteDialog";
 
 export default function Main() {
   return (
@@ -11,6 +12,7 @@ export default function Main() {
       <TopBar title="Project Accses" />
       <AddUserDialog />
       <UserTable />
+      <DeleteDialog />
     </Box>
   );
 }

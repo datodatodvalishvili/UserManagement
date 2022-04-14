@@ -8,6 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+
 import UserForm from "./userForm/UserForm";
 
 export default function AddUserDialog() {
@@ -25,10 +26,17 @@ export default function AddUserDialog() {
     <>
       <IconButton
         aria-label="delete"
-        sx={{ width: 100, height: 100, marginTop: -6.3, marginLeft: 15 }}
+        color="primary"
+        sx={{
+          backgroundColor: 'primary.main',
+          width: 80,
+          height: 80,
+          marginTop: -5,
+          marginLeft: 15,
+        }}
         onClick={handleClickOpen}
       >
-        <AddIcon sx={{ width: 100, height: 100 }} color="primary" />
+        <AddIcon color="white" sx={{ width: 50, height: 50 }} />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Invite New User</DialogTitle>
@@ -36,7 +44,7 @@ export default function AddUserDialog() {
           <UserForm handleClose={handleClose} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button  onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </>

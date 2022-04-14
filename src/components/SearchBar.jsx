@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Input, InputAdornment, } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { selectSearchText, setSearchText } from "../state/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
+
+import { selectSearchText, setSearchText } from "../state/usersSlice";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function SearchBar() {
         onChange={(event) => dispatch(setSearchText(event.target.value))}
         endAdornment={
           <InputAdornment position="end">
-            <SearchIcon color="primary" />
+            <SearchIcon color="standardText" />
           </InputAdornment>
         }
       />
